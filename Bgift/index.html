@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, My Love 🌸</title>
+  <meta name="description" content="A heartfelt birthday surprise filled with love, memories, and beautiful moments — made just for you.">
+  <meta property="og:title" content="Happy Birthday, My Love 🌸">
+  <meta property="og:description" content="A heartfelt birthday surprise filled with love, memories, and beautiful moments.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ===== LOADING SCREEN ===== -->
+  <div class="loader-screen" id="loaderScreen">
+    <div class="loader-content">
+      <div class="loader-heart">
+        <svg viewBox="0 0 100 100" class="loader-heart-svg">
+          <path class="loader-heart-path" d="M50,88 C25,65 5,50 5,30 A20,20,0,0,1,50,30 A20,20,0,0,1,95,30 C95,50 75,65 50,88Z" fill="none" stroke="#FF85A1" stroke-width="2"/>
+        </svg>
+        <div class="loader-heart-fill">💖</div>
+      </div>
+      <p class="loader-text">Preparing something special for you...</p>
+      <div class="loader-bar">
+        <div class="loader-bar-fill" id="loaderBarFill"></div>
+      </div>
+    </div>
+    <div class="loader-petals" id="loaderPetals"></div>
+  </div>
+
+  <!-- ===== CURSOR EFFECTS ===== -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <canvas id="cursorTrail" class="cursor-trail-canvas"></canvas>
+
+  <!-- ===== NAVIGATION DOTS ===== -->
+  <nav class="nav-dots" id="navDots" aria-label="Section navigation">
+    <button class="nav-dot active" data-section="hero" aria-label="Go to Hero"><span></span></button>
+    <button class="nav-dot" data-section="countdown" aria-label="Go to Countdown"><span></span></button>
+    <button class="nav-dot" data-section="timeline" aria-label="Go to Timeline"><span></span></button>
+    <button class="nav-dot" data-section="gallery" aria-label="Go to Gallery"><span></span></button>
+    <button class="nav-dot" data-section="loveLetter" aria-label="Go to Love Letter"><span></span></button>
+    <button class="nav-dot" data-section="reasons" aria-label="Go to Reasons"><span></span></button>
+    <button class="nav-dot" data-section="wish" aria-label="Go to Wish"><span></span></button>
+    <button class="nav-dot" data-section="footer" aria-label="Go to Footer"><span></span></button>
+  </nav>
+
+  <!-- ===== APPLE MUSIC-STYLE PLAYER ===== -->
+  <div class="am-player" id="musicPlayer" aria-label="Music player">
+    <audio id="bgAudio" src="Music.mp3" loop></audio>
+    <div class="am-cover">
+      <div class="am-disc" id="amDisc">🎵</div>
+    </div>
+    <div class="am-info">
+      <div class="am-title">Our Song</div>
+      <div class="am-subtitle">Music.mp3</div>
+      
+      <!-- Progress Bar -->
+      <div class="am-progress-container">
+        <span class="am-time" id="amCurrentTime">0:00</span>
+        <input type="range" class="am-progress-bar" id="amProgressBar" value="0" max="100" step="0.1">
+        <span class="am-time" id="amDuration">0:00</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="am-controls">
+        <button class="am-btn" id="amPlayPause">▶</button>
+      </div>
+      
+      <!-- Volume -->
+      <div class="am-volume-container">
+        <span class="am-vol-icon">🔉</span>
+        <input type="range" class="am-vol-slider" id="amVolumeSlider" value="50" max="100">
+        <span class="am-vol-icon">🔊</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION DIVIDERS (reusable wave/petal) ===== -->
+
+  <div id="slider-container" class="slider-container">
+    
+    <!-- ========== 1. HERO ========== -->
+    <section id="hero" class="slide-section" data-bg="dark">
+      <canvas id="petalCanvas" class="fullscreen-canvas"></canvas>
+      <div class="hero-particles" id="heroParticles"></div>
+      <div class="hero-layer hero-layer-1"></div>
+      <div class="hero-layer hero-layer-2"></div>
+      <div class="hero-layer hero-layer-3"></div>
+      <div class="hero-bokeh"></div>
+      <div class="hero-content" id="heroContent">
+        <div class="hero-glow"></div>
+        <div class="hero-text-wrapper">
+          <p class="hero-pre-title" id="heroPreTitle">
+            <span class="char-wrap"><span class="char">A</span></span><span class="char-wrap"><span class="char"> </span></span><span class="char-wrap"><span class="char">s</span></span><span class="char-wrap"><span class="char">p</span></span><span class="char-wrap"><span class="char">e</span></span><span class="char-wrap"><span class="char">c</span></span><span class="char-wrap"><span class="char">i</span></span><span class="char-wrap"><span class="char">a</span></span><span class="char-wrap"><span class="char">l</span></span><span class="char-wrap"><span class="char"> </span></span><span class="char-wrap"><span class="char">d</span></span><span class="char-wrap"><span class="char">a</span></span><span class="char-wrap"><span class="char">y</span></span><span class="char-wrap"><span class="char"> </span></span><span class="char-wrap"><span class="char">f</span></span><span class="char-wrap"><span class="char">o</span></span><span class="char-wrap"><span class="char">r</span></span><span class="char-wrap"><span class="char"> </span></span><span class="char-wrap"><span class="char">s</span></span><span class="char-wrap"><span class="char">o</span></span><span class="char-wrap"><span class="char">m</span></span><span class="char-wrap"><span class="char">e</span></span><span class="char-wrap"><span class="char">o</span></span><span class="char-wrap"><span class="char">n</span></span><span class="char-wrap"><span class="char">e</span></span><span class="char-wrap"><span class="char"> </span></span><span class="char-wrap"><span class="char">s</span></span><span class="char-wrap"><span class="char">p</span></span><span class="char-wrap"><span class="char">e</span></span><span class="char-wrap"><span class="char">c</span></span><span class="char-wrap"><span class="char">i</span></span><span class="char-wrap"><span class="char">a</span></span><span class="char-wrap"><span class="char">l</span></span>
+          </p>
+          <h1 class="hero-title" id="heroTitle">
+            <span class="hero-line hero-line-1">Happy Birthday,</span>
+            <span class="hero-line hero-line-2"><span class="hero-name-glow">My Love</span></span>
+          </h1>
+          <div class="hero-flower-anim">
+            <span class="bloom-emoji">🌸</span><span class="bloom-emoji">🌺</span><span class="bloom-emoji">🌷</span>
+          </div>
+        </div>
+        <p class="hero-subtitle" id="heroSubtitle"></p>
+        <div class="hero-cta-group" id="heroCta">
+          <div class="hero-badge">
+            <span class="badge-sparkle">✦</span><span>A day as special as you</span><span class="badge-sparkle">✦</span>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-invite" id="scrollInvite" style="pointer-events: auto;">
+        <button class="slide-next-btn">Begin Our Story ➔</button>
+      </div>
+    </section>
+
+    <!-- ========== 2. COUNTDOWN ========== -->
+    <section id="countdown" class="slide-section" data-bg="light">
+      <div class="section-bg-pattern countdown-pattern"></div>
+      <div class="container slide-content">
+        <div class="section-header">
+          <span class="section-icon">❀</span>
+          <h2 class="section-title reveal-text" data-reveal>Counting Down to Your Day</h2>
+          <p class="section-subtitle reveal-text" data-reveal>Every second brings us closer to your special moment</p>
+        </div>
+        <div class="counter-display" id="counterDisplay">
+          <div class="counter-card glass-card" data-magnetic>
+            <div class="counter-ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" class="counter-ring-bg"/><circle cx="50" cy="50" r="45" class="counter-ring-fill" id="ringDays"/></svg></div>
+            <div class="counter-number" id="counterDays">0</div>
+            <div class="counter-label">Days</div>
+          </div>
+          <div class="counter-separator"><span>:</span></div>
+          <div class="counter-card glass-card" data-magnetic>
+            <div class="counter-ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" class="counter-ring-bg"/><circle cx="50" cy="50" r="45" class="counter-ring-fill" id="ringHours"/></svg></div>
+            <div class="counter-number" id="counterHours">0</div>
+            <div class="counter-label">Hours</div>
+          </div>
+          <div class="counter-separator"><span>:</span></div>
+          <div class="counter-card glass-card" data-magnetic>
+            <div class="counter-ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" class="counter-ring-bg"/><circle cx="50" cy="50" r="45" class="counter-ring-fill" id="ringMinutes"/></svg></div>
+            <div class="counter-number" id="counterMinutes">0</div>
+            <div class="counter-label">Minutes</div>
+          </div>
+          <div class="counter-separator"><span>:</span></div>
+          <div class="counter-card glass-card" data-magnetic>
+            <div class="counter-ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" class="counter-ring-bg"/><circle cx="50" cy="50" r="45" class="counter-ring-fill" id="ringSeconds"/></svg></div>
+            <div class="counter-number" id="counterSeconds">0</div>
+            <div class="counter-label">Seconds</div>
+          </div>
+        </div>
+        <p class="counter-caption reveal-text" data-reveal>...I can't wait to celebrate you 💕</p>
+        <div style="text-align: center; margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
+          <button class="slide-prev-btn">❮ Back</button>
+          <button class="slide-next-btn">Unlock Gift ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3. PASSCODE SURPRISE ========== -->
+    <section id="surprise" class="slide-section" data-bg="dark">
+      <div class="surprise-bg-glow"></div>
+      <div class="container slide-content" id="lockScreen">
+        <div class="section-header">
+          <span class="section-icon lock-icon">🔒</span>
+          <h2 class="section-title reveal-text light" data-reveal>Unlock Your Gift</h2>
+          <p class="section-subtitle reveal-text light" data-reveal>Enter our special date to reveal the surprise</p>
+        </div>
+        <div class="passcode-container">
+          <div class="passcode-dots">
+            <div class="p-dot" id="dot-1"></div>
+            <div class="p-dot" id="dot-2"></div>
+            <div class="p-dot" id="dot-3"></div>
+            <div class="p-dot" id="dot-4"></div>
+          </div>
+          <div class="passcode-keypad">
+            <button class="kp-btn">1</button><button class="kp-btn">2</button><button class="kp-btn">3</button>
+            <button class="kp-btn">4</button><button class="kp-btn">5</button><button class="kp-btn">6</button>
+            <button class="kp-btn">7</button><button class="kp-btn">8</button><button class="kp-btn">9</button>
+            <button class="kp-btn kp-clear">C</button><button class="kp-btn">0</button><button class="kp-btn kp-enter">✓</button>
+          </div>
+          <p class="passcode-hint" id="passcodeHint"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 4. NETFLIX GALLERY ========== -->
+    <section id="gallery" class="slide-section locked-section" data-bg="dark">
+      <div class="container slide-content gallery-slider-content">
+        <div class="section-header">
+          <span class="section-icon">🖤🩷</span>
+          <h2 class="section-title light reveal-text" data-reveal>Our Romantic Photobox</h2>
+          <p class="section-subtitle light reveal-text" data-reveal>In your area, in my heart...</p>
+        </div>
+        
+        <!-- 3D Blackpink Photobook -->
+        <div class="album-book-container bp-photobox">
+          <div class="album-book" id="albumBook">
+            
+            <!-- Page 1 (Cover) -->
+            <div class="book-page" onclick="flipPage(this)">
+              <div class="page-face page-front book-cover bp-cover">
+                <div class="cover-inner">
+                  <h3 class="cover-title">Our Romance<br>In Pink</h3>
+                  <div style="font-size: 2.5rem; margin: 15px 0;">🎀</div>
+                  <p class="cover-subtitle" style="font-style:italic; color:#fff;">Photobook Moments</p>
+                  <p style="margin-top:20px; font-size:0.9rem; color:#ccc;">Tap to open</p>
+                </div>
+              </div>
+              <div class="page-face page-back bp-page">
+                <div class="photo-frame">
+                  <div class="photo-tape bp-tape-pink"></div>
+                  <div class="img-container" style="width:100%; height:100%; overflow:hidden; border: 1px solid #555;">
+                    <img src="Photo1.jpg" alt="Photo 1" style="width:100%; height:100%; object-fit:cover;">
+                  </div>
+                  <div class="bp-sticker">LOVE</div>
+                </div>
+                <p class="photo-caption"><span class="heart-icon">🖤</span> You make me feel alive</p>
+              </div>
+            </div>
+
+            <!-- Page 2 -->
+            <div class="book-page" onclick="flipPage(this)">
+              <div class="page-face page-front bp-page">
+                <div class="photo-frame">
+                  <div class="photo-tape bp-tape-black"></div>
+                  <div class="img-container" style="width:100%; height:100%; overflow:hidden; border: 1px solid #555;">
+                    <img src="Photo2.jpg" alt="Photo 2" style="width:100%; height:100%; object-fit:cover;">
+                  </div>
+                </div>
+                <p class="photo-caption"><span class="heart-icon">🩷</span> Shining like a star</p>
+              </div>
+              <div class="page-face page-back bp-page">
+                <div class="photo-frame">
+                  <div class="photo-tape bp-tape-pink"></div>
+                  <div class="img-container" style="width:100%; height:100%; overflow:hidden; border: 1px solid #555;">
+                    <img src="Photo3.jpg" alt="Photo 3" style="width:100%; height:100%; object-fit:cover;">
+                  </div>
+                  <div class="bp-sticker" style="transform: rotate(15deg);">XOXO</div>
+                </div>
+                <p class="photo-caption"><span class="heart-icon">🖤</span> Lovesick girls and boys</p>
+              </div>
+            </div>
+
+            <!-- Page 3 -->
+            <div class="book-page" onclick="flipPage(this)">
+              <div class="page-face page-front bp-page">
+                <div class="photo-frame">
+                  <div class="photo-tape bp-tape-black"></div>
+                  <div class="img-container" style="width:100%; height:100%; overflow:hidden; border: 1px solid #555;">
+                    <img src="Photo4.jpg" alt="Photo 4" style="width:100%; height:100%; object-fit:cover;">
+                  </div>
+                </div>
+                <p class="photo-caption"><span class="heart-icon">🩷</span> Sweeter than ice cream</p>
+              </div>
+              <div class="page-face page-back bp-page">
+                <div class="photo-frame">
+                  <div class="photo-tape bp-tape-pink"></div>
+                  <div class="img-container" style="width:100%; height:100%; overflow:hidden; border: 1px solid #555;">
+                    <img src="Photo5.jpg" alt="Photo 5" style="width:100%; height:100%; object-fit:cover;">
+                  </div>
+                </div>
+                <p class="photo-caption"><span class="heart-icon">🖤</span> How you like that?</p>
+              </div>
+            </div>
+
+            <!-- Page 4 -->
+            <div class="book-page" onclick="flipPage(this)">
+              <div class="page-face page-front bp-page">
+                <div class="photo-frame">
+                  <div class="photo-tape bp-tape-black"></div>
+                  <div class="img-container" style="width:100%; height:100%; overflow:hidden; border: 1px solid #555;">
+                    <img src="Photo6.jpg" alt="Photo 6" style="width:100%; height:100%; object-fit:cover;">
+                  </div>
+                  <div class="bp-sticker">BLINK</div>
+                </div>
+                <p class="photo-caption"><span class="heart-icon">🩷</span> Playing with love</p>
+              </div>
+              <div class="page-face page-back bp-page">
+                <div class="photo-frame">
+                  <div class="photo-tape bp-tape-pink"></div>
+                  <div class="img-container" style="width:100%; height:100%; overflow:hidden; border: 1px solid #555;">
+                    <img src="Photo7.jpg" alt="Photo 7" style="width:100%; height:100%; object-fit:cover;">
+                  </div>
+                </div>
+                <p class="photo-caption"><span class="heart-icon">🖤</span> As if it's your last</p>
+              </div>
+            </div>
+
+            <!-- Page 5 (Video & Back Cover) -->
+            <div class="book-page" onclick="flipPage(this)">
+              <div class="page-face page-front bp-page">
+                <div class="video-frame" style="width:90%; height:70%; background:#000; margin-bottom:15px; display:flex; align-items:center; box-shadow: 0 4px 15px rgba(255,105,180,0.4); border: 10px solid #222; border-bottom-width: 30px; position:relative;">
+                   <div class="photo-tape bp-tape-black"></div>
+                   <video id="photoboxVideo" controls playsinline style="width:100%; max-height:100%;">
+                     <source src="Zila2.mp4" type="video/mp4">
+                   </video>
+                </div>
+                <p class="photo-caption">Zila Day 🎥</p>
+              </div>
+              <div class="page-face page-back book-cover bp-cover">
+                <div class="cover-inner">
+                  <h3 class="cover-title" style="font-size:2rem;">Born Pink</h3>
+                  <div style="font-size: 2rem; margin-top: 15px;">🖤🩷</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="book-nav">
+          <button id="bookPrev" class="book-btn" onclick="turnBookPage('prev')">❮ Prev Page</button>
+          <button id="bookNext" class="book-btn" onclick="turnBookPage('next')">Next Page ❯</button>
+        </div>
+        <div style="text-align: center; display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+          <button class="slide-prev-btn">❮ Back</button>
+          <button class="slide-next-btn">100 Reasons ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 5. REASONS CLOUD ========== -->
+    <section id="reasons" class="slide-section locked-section" data-bg="light">
+      <div class="container slide-content" style="position:relative; height:100%;">
+        <div class="section-header">
+          <span class="section-icon">☁️</span>
+          <h2 class="section-title reveal-text" data-reveal>100 Reasons Why</h2>
+          <p class="section-subtitle reveal-text" data-reveal>Tap a bubble to discover why I love you...</p>
+        </div>
+        <div class="cloud-stage" id="cloudStage">
+           <!-- Bubbles generated by JS -->
+        </div>
+        <div class="reason-focus-modal" id="reasonModal">
+           <div class="reason-focus-content glass-card">
+              <span class="rm-heart">💖</span>
+              <p class="rm-text" id="rmText"></p>
+              <button class="rm-close" id="rmClose">Close</button>
+           </div>
+        </div>
+        <div style="position: absolute; bottom: 20px; width: 100%; text-align: center; display: flex; justify-content: center; gap: 15px;">
+          <button class="slide-prev-btn">❮ Back</button>
+          <button class="slide-next-btn">A Letter For You ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 6. LOVE LETTER ========== -->
+    <section id="loveLetter" class="slide-section locked-section" data-bg="light">
+      <div class="floating-roses" id="floatingRoses"></div>
+      <div class="container slide-content">
+        <div class="section-header">
+          <span class="section-icon">💌</span>
+          <h2 class="section-title reveal-text" data-reveal>A Letter For You</h2>
+        </div>
+        <div class="envelope-stage" id="envelopeStage">
+          <div class="envelope-3d" id="envelope3d">
+            <div class="env-back"></div>
+            <div class="env-letter" id="envLetter">
+              <div class="letter-inner">
+                <p class="l-greeting">My Dearest Love,</p>
+                <p class="l-body">On this special day, I want you to know that you are the most beautiful soul I have ever encountered. Every morning I wake up grateful that you are a part of my life.</p>
+                <p class="l-body">You have this incredible way of making ordinary moments feel magical. Your laughter is my favorite melody, your eyes hold galaxies I want to explore forever.</p>
+                <p class="l-body">Thank you for loving me, for being patient with me, for being my partner in every adventure and my comfort in every storm.</p>
+                <p class="l-body">Happy Birthday, my love. May this year bring you all the joy, dreams, and magic that you so truly deserve.</p>
+                <p class="l-closing">With all my love and prayers,</p>
+                <p class="l-signature">Your Boyfriend 💕</p>
+              </div>
+            </div>
+            <div class="env-front" id="envFront">
+              <div class="env-seal" id="envSeal"><div class="seal-wax"><span>💖</span></div></div>
+              <p class="env-label">Tap to open</p>
+            </div>
+            <div class="env-flap" id="envFlap"></div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px; display: flex; justify-content: center; gap: 15px;">
+          <button class="slide-prev-btn">❮ Back</button>
+          <button class="slide-next-btn">Make a Wish ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 8. WISH & FOOTER ========== -->
+    <section id="wish" class="slide-section locked-section" data-bg="dark">
+      <canvas id="wishStars" class="fullscreen-canvas"></canvas>
+      <div class="wish-aurora"></div>
+      <div class="container slide-content wish-container" style="display:flex; flex-direction:column; justify-content:space-between; height:100%; padding-bottom: 40px; padding-top: 100px;">
+        <div class="wish-frame glass-card-dark" id="wishFrame" style="margin-top:auto;">
+          <div class="wish-corner wc-tl"></div><div class="wish-corner wc-tr"></div>
+          <div class="wish-corner wc-bl"></div><div class="wish-corner wc-br"></div>
+          <h2 class="wish-title" id="wishTitle">Happy Birthday</h2>
+          <div class="wish-divider"><span>✦</span><span>♥</span><span>✦</span></div>
+          <p class="wish-message">
+            May your day be filled with love, laughter, and all the wonderful things you deserve. 
+            You are the most precious gift life has ever given me.
+          </p>
+          <p class="wish-emojis">🎂 🌸 💖 🎁 ✨</p>
+        </div>
+        
+        <div class="footer-inner" style="margin-top:auto; text-align:center;">
+          <div class="footer-heart-wrap">
+            <div class="footer-heart-ring"></div><div class="footer-heart-ring ring-2"></div>
+            <div class="footer-heart-ring ring-3"></div><div class="footer-heart-emoji" id="footerHeart">💖</div>
+          </div>
+          <button class="confetti-btn" id="confettiBtn" aria-label="Blow the candles">
+            <span class="btn-sparkle"></span> 🎂 Blow the Candles! 🎂 <span class="btn-sparkle"></span>
+          </button>
+          <p class="footer-year" style="color: rgba(255,255,255,0.5); margin-top: 10px; font-family: var(--font-accent);">With love, always & forever • 2026</p>
+        </div>
+      </div>
+      <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+    </section>
+  </div>
+
+  <!-- CDN: GSAP + ScrollTrigger + Observer (for full-page sliding) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
+
+  <!-- App Scripts -->
+  <script src="js/particles-config.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

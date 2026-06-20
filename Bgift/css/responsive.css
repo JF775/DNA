@@ -1,0 +1,114 @@
+/* ============================================
+   RESPONSIVE v2
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .gi-tall { grid-row: span 1; }
+  .gi-wide { grid-column: span 1; }
+  .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .garden-flowers { gap: 35px; }
+  .wish-frame { padding: 50px 36px; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 16px; }
+  .section-header { margin-bottom: 40px; }
+  .section-title { font-size: 1.8rem; }
+  .section-subtitle { font-size: 1.05rem; }
+  .nav-dots { right: 12px; gap: 10px; }
+  .nav-dot { width: 10px; height: 10px; }
+
+  /* Hero */
+  .hero-title { font-size: 2.6rem; }
+  .hero-pre-title { font-size: 0.75rem; letter-spacing: 3px; }
+  .hero-glow { width: 300px; height: 300px; }
+  .hero-badge { padding: 10px 20px; font-size: 0.85rem; }
+  .scroll-invite { bottom: 80px; }
+
+  /* Counter */
+  .counter-display { gap: 10px; }
+  .counter-card { min-width: 80px; padding: 20px 14px; }
+  .counter-ring { width: 60px; height: 60px; }
+  .counter-number { font-size: 1.8rem; }
+  .counter-separator { font-size: 1.8rem; padding-bottom: 20px; }
+
+  /* Timeline */
+  .timeline-track { left: 20px; }
+  .timeline-item { width: 100% !important; left: 0 !important; padding: 12px 12px 12px 55px !important; text-align: left !important; }
+  .timeline-node { left: -5px !important; right: auto !important; width: 42px; height: 42px; font-size: 1.1rem; }
+  .timeline-card { padding: 18px; }
+  .img-placeholder { height: 130px; }
+
+  /* Gallery */
+  .gallery-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .polaroid-cap { font-size: 0.85rem; }
+
+  /* Letter */
+  .envelope-stage { max-width: 100%; }
+  .env-letter { padding: 24px 18px; }
+  .l-greeting { font-size: 1.3rem; }
+  .l-body { font-size: 0.95rem; }
+
+  /* Reasons */
+  .reasons-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .flip-card { height: 200px; }
+
+  /* Wish */
+  .wish-frame { padding: 36px 20px; }
+  .wish-title { font-size: 2.2rem; }
+
+  /* Garden */
+  .garden-stage { height: 350px; }
+  .garden-flowers { gap: 25px; }
+  .g-stem.grown { height: 130px; }
+  .g-bloom { width: 50px; height: 50px; }
+  .g-petal { width: 20px; height: 20px; }
+  .g-center { width: 12px; height: 12px; }
+
+  /* Music */
+  .music-player { bottom: 14px; right: 14px; padding: 6px 12px 6px 6px; }
+  .music-toggle { width: 36px; height: 36px; }
+  .music-label { display: none; }
+
+  /* Footer */
+  .confetti-btn { padding: 14px 28px; font-size: 1rem; }
+
+  /* Cursor */
+  .cursor-dot, .cursor-ring, .cursor-trail-canvas { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-pre-title { font-size: 0.7rem; }
+  .bloom-emoji { font-size: 1.4rem; }
+  .counter-card { min-width: 62px; padding: 14px 10px; border-radius: 14px; }
+  .counter-ring { width: 48px; height: 48px; }
+  .counter-number { font-size: 1.4rem; }
+  .counter-label { font-size: 0.8rem; }
+  .counter-separator { font-size: 1.3rem; }
+  .gallery-grid { grid-template-columns: 1fr; gap: 18px; }
+  .polaroid-card .img-placeholder { min-height: 180px; }
+  .flip-card { height: 170px; }
+  .flip-card-front .card-heart { font-size: 2rem; }
+  .flip-card-back .card-reason { font-size: 0.95rem; }
+  .garden-flowers { gap: 16px; flex-wrap: wrap; }
+  .garden-stage { height: 380px; }
+  .g-stem.grown { height: 100px; }
+  .g-bloom { width: 42px; height: 42px; }
+  .wish-emojis { font-size: 1.5rem; letter-spacing: 4px; }
+  .footer-heart-wrap { width: 60px; height: 60px; }
+  .footer-heart-emoji { font-size: 2rem; }
+}
+
+@media (max-width: 360px) {
+  .hero-title { font-size: 1.7rem; }
+  .counter-display { gap: 6px; }
+  .counter-card { min-width: 54px; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-section { min-height: auto; padding: 60px 0 100px; }
+  .wish-section { min-height: auto; padding: 60px 0; }
+  .scroll-invite { display: none; }
+}
